@@ -87,13 +87,11 @@
                         <p class="text-muted">Follow Us</p>
                         <ul class="list-inline mt-4">
                             <li class="list-inline-item">
-                                <img src="{{ asset('storage/images/ig-logo.png') }}" style="height: 8vh;">
-                                <a href="#" target="_blank" title="twitter"></a>
+                                <a href="https://www.instagram.com/ngasooo.id/" target="_blank" title="instagram">
+                                <img src="{{ asset('storage/images/ig-logo.png') }}" style="height: 8vh;"></a>
                             </li>
                             <li class="list-inline-item"><a href="#" target="_blank" title="facebook"></a></li>
-                            <li class="list-inline-item">
-                                <!-- <img src="{{ asset('storage/images/ig-logo.png') }}" style="height: 8vh;"> -->
-                                <a href="#" target="_blank" title="instagram"></a>
+                            <li class="list-inline-item"><a href="#" target="_blank" title="twitter"></a>
                             </li>
                             <li class="list-inline-item"><a href="#" target="_blank" title="pinterest"></a></li>
                             <li class="list-inline-item"><a href="#" target="_blank" title="vimeo"></a></li>
