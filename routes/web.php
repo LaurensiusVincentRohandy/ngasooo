@@ -21,5 +21,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/home', 'BookingController@create');
+// Route::get('/home', 'BookingController@create');
 Route::post('/home', 'BookingController@store');

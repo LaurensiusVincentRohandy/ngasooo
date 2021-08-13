@@ -2,14 +2,14 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\Booking as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Booking extends Model
+class Booking extends Authenticatable
 {
-    protected $guarded = [];
-    public $fillable = [
-        'location',
-        'date',
-        'duration'
+    use Notifiable;
+
+    protected $fillable = [
+        'location', 'date', 'duration',
     ];
 }

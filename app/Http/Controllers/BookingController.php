@@ -4,9 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Booking;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class BookingController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,15 +27,41 @@ class BookingController extends Controller
     {
         //
     }
+    
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    // protected function validator(Request $request)
+    // {
+    //     $request->validate([
+    //         'location' => 'required',
+    //         'date' => 'required',
+    //         'duration' => 'required',
+    //     ]);
+
+    //     return Validator::make($data, [
+    //         'location' => 'required',
+    //         'date' => 'required',
+    //         'duration' => 'required',
+    //     ]);
+    // }
 
     /**
-     * Show the form for creating a new resource.
+     * Create a new booking instance after a valid registration.
      *
-     * @return \Illuminate\Http\Response
+     * @param  array  $data
+     * @return \App\Booking
      */
-    public function create()
+    protected function create(array $data)
     {
-        return view('home');
+        return Booking::create([
+            'location' => $data['location'],
+            'date' => $data['date'],
+            'duration' => $data['duration'],
+        ]);
     }
 
     /**
@@ -35,23 +72,11 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'location' => 'required',
-        //     'date' => 'required',
-        //     'duration' => 'required',
-        // ]);
-        // Booking::create($request->all());
-        // return back()->with('success', 'your form has been submitted');
-
-        $validatedData = $request->validate([
+        $request->validate([
             'location' => 'required',
             'date' => 'required',
             'duration' => 'required',
         ]);
-
-        Booking::create($request->all());
-
-        return redirect('/home');
     }
 
     /**
