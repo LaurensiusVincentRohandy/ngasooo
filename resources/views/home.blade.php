@@ -69,7 +69,7 @@
 </div>
 <style>
     body  {
-        background-image: url("{{ asset('storage/images/home-bg.png') }}");
+        background-image: url("{{ asset('storage/images/home-bg.jpg') }}");
         height: 70vh;
         background-position: center;
         background-repeat: no-repeat;
