@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Booking;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
@@ -25,45 +25,23 @@ class BookingController extends Controller
      */
     public function index()
     {
-        //
+        $userId = Auth::user()->id;
+
+        $bookings = Booking::where('user_id', $userId)->get();
+
+        return view('bookings.list', ['bookings'=>$bookings]);
     }
     
     /**
-     * Get a validator for an incoming registration request.
+     * Show the form for creating a new resource.
      *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
+     * @return \Illuminate\Http\Response
      */
-    // protected function validator(Request $request)
-    // {
-    //     $request->validate([
-    //         'location' => 'required',
-    //         'date' => 'required',
-    //         'duration' => 'required',
-    //     ]);
-
-    //     return Validator::make($data, [
-    //         'location' => 'required',
-    //         'date' => 'required',
-    //         'duration' => 'required',
-    //     ]);
-    // }
-
-    /**
-     * Create a new booking instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Booking
-     */
-    protected function create(array $data)
+    public function create()
     {
-        return Booking::create([
-            'location' => $data['location'],
-            'date' => $data['date'],
-            'duration' => $data['duration'],
-        ]);
+        //
     }
-
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -73,9 +51,9 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'location' => 'required',
-            'date' => 'required',
-            'duration' => 'required',
+            'location' => ['required'],
+            'date' => ['required'],
+            'duration' => ['required']
         ]);
     }
 
